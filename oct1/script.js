@@ -87,11 +87,6 @@
 // console.log(makeNewArray(arr, 3));
 
 
-let str1 = "zdbcfb";
-let str2 = "abbcdeb";
-let strr1 = "abcba";
-let strr2 = "abcbcba";
-
 var longestCommonSubsequence = function (text1, text2) {
   return getMaxLength(makeSubsequenceArray(makeIndexArray(text1, text2)));
 };
@@ -117,7 +112,7 @@ function makeSubsequenceArray(outerArray, i = 0, result =[[]]) {
   let newResult = [...result];
   for (let ele of outerArray[i]) {
     for (let array of result) {
-      console.log(array);
+      //console.log(array);
       if (array[array.length - 1]<ele||array[array.length-1] === undefined) {
         newResult.push([...array, ele]);
       }
@@ -139,4 +134,22 @@ function getMaxLength(subsequenceArray) {
 }
 
 
+function test(actual, expected){
+  if (actual === expected){
+    console.log("Pass")
+  } else {
+    console.log(`actual is ${actual}`, `expected is ${expected}`)
+  }
+}
+
+let str1 = "zdbcfb";
+let str2 = "abbcdeb";
+let strr1 = "abcba";
+let strr2 = "abcbcba";
+
 console.log(longestCommonSubsequence(strr1, strr2))
+console.log(longestCommonSubsequence("abcdef", "def"));
+test(longestCommonSubsequence("abbc", "abc"), 3);
+test(longestCommonSubsequence("abc", "abbc"), 3);
+test(longestCommonSubsequence("abcdef", "bcfadef"), 5)
+//console.log(longestCommonSubsequence("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
