@@ -8,34 +8,25 @@
 const bestSum = (targetSum, numbers) => {
   if (targetSum === 0) return [];
   if (targetSum < 0) return null;
+
+  let shortestCombination = null;
+
   for (const num of numbers) {
     remainder = targetSum - num;
-    let combination = bestSum(remainder, numbers);
-    if (combination !== null) {
-      combination.push(num);
-      return combination;
+    const remainderCombination = bestSum(remainder, numbers);
+
+    if (remainderCombination !== null) {
+      const combination = [...remainderCombination, num];
+      if (
+        shortestCombination === null ||
+        combination.length < shortestCombination.length
+      ) {
+        shortestCombination = combination;
+      }
     }
   }
-  return null;
+  return shortestCombination;
 };
 
-// console.log(bestSum(0, [1, 4]), []);
-// console.log(bestSum(5, [4, 3]), null);
-// console.log(bestSum(5, [2, 3]), [3, 2]);
-console.log(bestSum(7, [2, 3, 5]), [3, 2, 2]);
-
-const getCombinations = (targetSum, numbers, combination = []) => {
-  if (targetSum === 0) return true;
-  if (targetSum < 0) return false;
-  for (const num of numbers) {
-    remainder = targetSum - num;
-    if (getCombinations(targetSum, numbers, combination) === true) {
-      combination.push(num);
-      console.log(targetSum, combination);
-      return true;
-    }
-  }
-  return false;
-};
-
-console.log(getCombinations(7, [2, 3, 5]));
+//console.log(bestSum(7, [2, 3, 5]));
+console.log(bestSum(8, [4, 2]));
